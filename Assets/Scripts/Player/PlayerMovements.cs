@@ -1,0 +1,106 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+[System.Serializable]
+public class PlayerMovements {
+# region Walk and Run
+    [Header("Walk and Run")]
+    [SerializeField] float walkSpeed;
+    [SerializeField] float runSpeed;
+    [SerializeField] float crouchSpeed;
+
+    public Vector3 GetCurrentPlayerWalkMove(Vector3 inputDirection, bool running)
+    {
+        Vector3 currentPlayerWalkMove = new Vector3();
+
+        currentPlayerWalkMove = Quaternion.Euler(new Vector3(0, currentCameraDirection.y, 0)) * inputDirection.normalized * (Crouched ? crouchSpeed : running ? runSpeed : walkSpeed) * 100 * Time.deltaTime;
+
+        return currentPlayerWalkMove;
+    }
+    #endregion
+
+    #region Look
+    [Space] [Header("Look")]
+    [SerializeField] float cameraSensibility;
+    [SerializeField] Vector3 currentCameraDirection;
+    [SerializeField] Transform player;
+    [SerializeField] Transform cameras;
+
+    public void MovePlayerCameraAndObject()
+    {
+        currentCameraDirection.x -= Input.GetAxisRaw("Mouse Y") * cameraSensibility;
+        currentCameraDirection.x = Mathf.Clamp(currentCameraDirection.x, -90, 90);
+
+        currentCameraDirection.y += Input.GetAxisRaw("Mouse X") * cameraSensibility;
+        if (currentCameraDirection.y > 360)
+            currentCameraDirection.y -= 360;
+        if (currentCameraDirection.y < 0)
+            currentCameraDirection.y += 360;
+
+        player.localRotation = Quaternion.Euler(new Vector3(0, currentCameraDirection.y, 0));
+        cameras.localRotation = Quaternion.Euler(new Vector3(currentCameraDirection.x, 0, 0));
+    }
+    #endregion
+
+    [Space] [Header("Jump")]
+    [SerializeField] GravityManager gravityManager;
+    public GravityManager GrvtManager
+    {
+        get
+        {
+            return gravityManager;
+        }
+    }
+    [SerializeField] float jumpForce;
+
+    public void Jump()
+    {
+        gravityManager.Jump(jumpForce);
+    }
+
+    [Space] [Header("Crouch")]
+    [SerializeField] Transform playerColliderPivot;
+    [SerializeField] float crouchedPlayerHeightCoeff;
+    [SerializeField] float crouchTransitionTime;
+    [SerializeField] float uncrouchedCamPos;
+    [SerializeField] float crouchedCamPos;
+    float currentCrouchTransitionTime;
+
+    public void CheckCrouch(bool crouched)
+    {
+        if (crouched)
+        {
+            if (currentCrouchTransitionTime < crouchTransitionTime)
+                currentCrouchTransitionTime += Time.deltaTime;
+            else if (currentCrouchTransitionTime > crouchTransitionTime)
+                currentCrouchTransitionTime = crouchTransitionTime;
+        }
+        else
+        {
+            if (currentCrouchTransitionTime > 0)
+                currentCrouchTransitionTime -= Time.deltaTime;
+            else if (currentCrouchTransitionTime < 0)
+                currentCrouchTransitionTime = 0;
+        }
+
+        playerColliderPivot.transform.localScale = new Vector3(1, Mathf.Lerp(crouchedPlayerHeightCoeff, 1, 1 - CurrentCrouchProgression), 1);
+        cameras.transform.localPosition = new Vector3(cameras.transform.localPosition.x, Mathf.Lerp(crouchedCamPos, uncrouchedCamPos, 1 - CurrentCrouchProgression), cameras.transform.localPosition.z);
+    }
+
+    public float CurrentCrouchProgression
+    {
+        get
+        {
+            return currentCrouchTransitionTime / crouchTransitionTime;
+        }
+    }
+
+    public bool Crouched
+    {
+        get
+        {
+            return CurrentCrouchProgression > 0.2f;
+        }
+    }
+}
