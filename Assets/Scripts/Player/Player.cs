@@ -13,23 +13,30 @@ public class Player : MonoBehaviour {
     void Start () {
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
-	}
+        lampManager.CheckForLookedObject(GameManager.gameManager.NormalCamera.gameObject.activeInHierarchy ? GameManager.gameManager.NormalCamera : GameManager.gameManager.LensCamera);
+    }
 	
 	void Update () {
-        if (inputManager.GetLensEquip)
-            lensManager.Equip(!lensManager.Equiped);
+        if (lensManager.HasLens)
+        {
+            if (inputManager.GetLensEquip)
+                lensManager.Equip(!lensManager.Equiped);
+        }
 
         playerMovements.CheckCrouch(inputManager.GetCrouch);
 
-        EnigmaObject lampEnigmaObject = lampManager.CheckForLookedObject(GameManager.gameManager.NormalCamera.gameObject.activeInHierarchy ? GameManager.gameManager.NormalCamera : GameManager.gameManager.LensCamera);
-        if(lampEnigmaObject != null && Input.GetMouseButtonDown(0))
+        if (lampManager.HasLamp)
         {
-            lampManager.ActiveLamp(lampEnigmaObject);
-        }
+            EnigmaObject lampEnigmaObject = lampManager.CheckForLookedObject(GameManager.gameManager.NormalCamera.gameObject.activeInHierarchy ? GameManager.gameManager.NormalCamera : GameManager.gameManager.LensCamera);
+            if (lampEnigmaObject != null && Input.GetMouseButtonDown(0))
+            {
+                lampManager.ActiveLamp(lampEnigmaObject);
+            }
 
-        if (Input.GetMouseButtonDown(1))
-        {
-            lampManager.DesactiveLamp();
+            if (Input.GetMouseButtonDown(1))
+            {
+                lampManager.DesactiveLamp();
+            }
         }
     }
 
