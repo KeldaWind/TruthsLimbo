@@ -10,19 +10,20 @@ public class EnemyMovement : MonoBehaviour {
 
     [Header("Movement")]
     public bool canMoveToPlayer;
-    private Player player;
+    
 
-    [Header("debug")]
+    [Header("Debug")]
     public bool debugMode;
     public KeyCode moveInput;
     public Transform destinationDebug;
 
+    //Required references
+    private Player player;
 
     void Start ()
     {
         player = GameManager.gameManager.player; //Get player
 	}
-	
 
 	void Update ()
     {
@@ -50,6 +51,9 @@ public class EnemyMovement : MonoBehaviour {
         MovePosition(player.transform.position);
     }
 
+    /// <summary>
+    /// Permet de stopper le mouvement
+    /// </summary>
     public void StopMovement()
     {
         meshAgent.ResetPath();
@@ -59,7 +63,7 @@ public class EnemyMovement : MonoBehaviour {
     /// Move the enemy to a target destination
     /// </summary>
     /// <param name="_destination"></param>
-    void MovePosition(Vector3 _destination)
+    public void MovePosition(Vector3 _destination)
     {
         meshAgent.SetDestination(_destination);
     }

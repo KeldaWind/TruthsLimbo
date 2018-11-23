@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour {
 
     [SerializeField] Camera normalCamera;
     public Player player;
+    public LensManager lensManager;
 
     public Camera NormalCamera
     {
