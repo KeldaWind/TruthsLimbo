@@ -7,6 +7,8 @@ public class GameManager : MonoBehaviour {
     public static GameManager gameManager;
 
     [SerializeField] Camera normalCamera;
+    public Player player;
+
     public Camera NormalCamera
     {
         get
@@ -32,7 +34,8 @@ public class GameManager : MonoBehaviour {
 		
 	}
 	
-	void Update () {
+	void Update ()
+    {
 		
 	}
 }
