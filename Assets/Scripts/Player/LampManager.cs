@@ -5,6 +5,15 @@ using UnityEngine.UI;
 
 [System.Serializable]
 public class LampManager {
+    [SerializeField] bool ownsLamp;
+    public bool HasLamp
+    {
+        get
+        {
+            return ownsLamp;
+        }
+    }
+
     [SerializeField] Image gameCursor;
     [SerializeField] Sprite normalGameCursorImage;
     [SerializeField] Sprite lampActiveGameCursorImage;

@@ -5,6 +5,15 @@ using UnityEngine;
 [System.Serializable]
 public class LensManager {
 
+    [SerializeField] bool ownsLens;
+    public bool HasLens
+    {
+        get
+        {
+            return ownsLens;
+        }
+    }
+
     public void Equip(bool equip)
     {
         GameManager.gameManager.NormalCamera.gameObject.SetActive(!equip);
