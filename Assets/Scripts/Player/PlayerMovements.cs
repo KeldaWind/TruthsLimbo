@@ -65,6 +65,9 @@ public class PlayerMovements {
     [SerializeField] float crouchTransitionTime;
     [SerializeField] float uncrouchedCamPos;
     [SerializeField] float crouchedCamPos;
+    [SerializeField] Transform forceCrouchCheckers;
+    [SerializeField] Vector3 uncrouchedCrouchCheckersPos;
+    [SerializeField] Vector3 crouchedCrouchCheckersPos;
     float currentCrouchTransitionTime;
 
     public void CheckCrouch(bool crouched)
@@ -74,18 +77,55 @@ public class PlayerMovements {
             if (currentCrouchTransitionTime < crouchTransitionTime)
                 currentCrouchTransitionTime += Time.deltaTime;
             else if (currentCrouchTransitionTime > crouchTransitionTime)
-                currentCrouchTransitionTime = crouchTransitionTime;
+                currentCrouchTransitionTime = crouchTransitionTime; 
         }
         else
         {
-            if (currentCrouchTransitionTime > 0)
-                currentCrouchTransitionTime -= Time.deltaTime;
-            else if (currentCrouchTransitionTime < 0)
-                currentCrouchTransitionTime = 0;
+            if (CanGetUp())
+            {
+                if (currentCrouchTransitionTime > 0)
+                    currentCrouchTransitionTime -= Time.deltaTime;
+                else if (currentCrouchTransitionTime < 0)
+                    currentCrouchTransitionTime = 0;
+            }
         }
 
         playerColliderPivot.transform.localScale = new Vector3(1, Mathf.Lerp(crouchedPlayerHeightCoeff, 1, 1 - CurrentCrouchProgression), 1);
         cameras.transform.localPosition = new Vector3(cameras.transform.localPosition.x, Mathf.Lerp(crouchedCamPos, uncrouchedCamPos, 1 - CurrentCrouchProgression), cameras.transform.localPosition.z);
+        forceCrouchCheckers.localPosition = Vector3.Lerp(crouchedCrouchCheckersPos, uncrouchedCrouchCheckersPos, 1 - CurrentCrouchProgression);
+    }
+
+    public bool CanGetUp()
+    {
+        bool canGetUp = true;
+
+        for (int i = 0; i < forceCrouchCheckers.childCount; i++)
+        {
+            Transform pos = forceCrouchCheckers.GetChild(i);
+
+            Ray ray = new Ray();
+            ray.origin = pos.position;
+            ray.direction = new Vector3(0, 1, 0);
+
+            Debug.DrawRay(ray.origin, ray.direction * 0.15f, Color.red);
+
+            RaycastHit[] hits = Physics.RaycastAll(ray, 0.15f);
+
+            foreach (RaycastHit hit in hits)
+            {
+                if (!hit.collider.isTrigger)
+                {
+                    canGetUp = false;
+
+                    break;
+                }
+            }
+
+            if (!canGetUp)
+                break;
+        }
+
+        return canGetUp;
     }
 
     public float CurrentCrouchProgression

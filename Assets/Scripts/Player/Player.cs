@@ -12,6 +12,7 @@ public class Player : MonoBehaviour {
 
     void Start () {
         Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
 	}
 	
 	void Update () {
@@ -37,7 +38,9 @@ public class Player : MonoBehaviour {
         playerBody.velocity = GetCurrentTotalForce();
         playerMovements.MovePlayerCameraAndObject();
 
-        if (inputManager.GetJump && playerMovements.GrvtManager.CheckForOnGround())
+        bool onGround = playerMovements.GrvtManager.CheckForOnGround();
+
+        if (inputManager.GetJump && onGround)
             playerMovements.Jump();
     }
 

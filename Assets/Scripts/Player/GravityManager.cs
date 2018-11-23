@@ -10,6 +10,7 @@ public class GravityManager
     /// </summary>
     [SerializeField] Vector3 gravityDirection;
     [SerializeField] float gravityAcceleration;
+    [SerializeField] float maximumGravitySpeed;
     [SerializeField] Transform[] gravityCheckers;
     float currentVerticalSpeed;
 
@@ -22,9 +23,14 @@ public class GravityManager
     {
         Vector3 gravityForce = new Vector3();
 
-        CheckForOnGround();
+        if (CheckForOnGround() && currentVerticalSpeed < 0)
+            currentVerticalSpeed = 0;
+        else
+        {
+            currentVerticalSpeed -= gravityAcceleration * Time.deltaTime;
 
-        currentVerticalSpeed -= gravityAcceleration * Time.deltaTime;
+            currentVerticalSpeed = Mathf.Clamp(currentVerticalSpeed, -maximumGravitySpeed, maximumGravitySpeed);
+        }
 
         gravityForce = gravityDirection * currentVerticalSpeed * 100 * Time.deltaTime;
 
@@ -47,6 +53,8 @@ public class GravityManager
             ray.origin = checker.position;
             ray.direction = new Vector3(0, -1, 0);
 
+            //Debug.DrawRay(ray.origin, ray.direction * 0.15f, Color.red);
+
             RaycastHit[] hits = Physics.RaycastAll(ray, 0.15f);
 
             foreach (RaycastHit hit in hits)
@@ -67,6 +75,5 @@ public class GravityManager
     public void Jump(float jumpForce)
     {
         currentVerticalSpeed = jumpForce;
-        Debug.Log("Jump");
     }
 }
