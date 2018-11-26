@@ -2,13 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Permet de gérer le Behaviour de l'ennemi
+/// </summary>
 public class EnemyBehaviour : MonoBehaviour {
+
+    #region Fields
 
     public enum EnemyState
     {
         Inactive, //Quand invisible
         Static, //Quand il est est visible ou dans la réalité
-        ChasePlayer //quand il poursuit le player
+        ChasePlayer, //quand il poursuit le player
+        Attack ///Quand il attaque le player
     }
 
     public EnemyState enemyState;
@@ -16,6 +22,7 @@ public class EnemyBehaviour : MonoBehaviour {
     [Header("Enemy scripts")]
     public EnemyMovement movement;
     public EnemyAttack attack;
+    public EnemyVisibility visibility;
 
     [Header("Detection values")]
     public LayerMask playerLayer;
@@ -23,17 +30,19 @@ public class EnemyBehaviour : MonoBehaviour {
     public float attackRadius = 2;
     bool playerDetected;
 
+    //Required refereence
+    private LensManager lensManager;
 
+    #endregion
 
-	void Start ()
+    void Start ()
     {
-		
+        lensManager = GameManager.gameManager.lensManager; //get lesn manager
 	}
-	
 
 	void Update ()
     {
-
+        Behaviour();
 	}
 
     /// <summary>
@@ -44,15 +53,62 @@ public class EnemyBehaviour : MonoBehaviour {
         switch (enemyState)
         {
             case EnemyState.Inactive:
-                //DO NOTHING
+
+                if (lensManager.Equiped)
+                {
+                    ChangeBehaviour(EnemyState.Static);
+                }
+
                 break;
             case EnemyState.Static:
                 playerDetected = PlayerDetected();
+
+                //Si detection du player
+                if (playerDetected)
+                {
+                    ChangeBehaviour(EnemyState.ChasePlayer);
+                }
+
+                //check lens
+                if (!lensManager.Equiped)
+                {
+                    ChangeBehaviour(EnemyState.Inactive);
+                }
 
                 break;
             case EnemyState.ChasePlayer:
                 playerDetected = PlayerDetected();
                 movement.MoveToPlayer(); //move to player
+
+                //Check lens
+                if (!lensManager.Equiped)
+                {
+                    ChangeBehaviour(EnemyState.Inactive);
+                }
+
+                //Check attack
+                bool attackPlayer = CanAttack();
+
+                if (attackPlayer)
+                {
+                    ChangeBehaviour(EnemyState.Attack);
+                }
+
+                break;
+            case EnemyState.Attack:
+
+                if (!attack.isAttacking)
+                {
+                    ChangeBehaviour(EnemyState.Static);
+                }
+
+                //Check lens
+                if (!lensManager.Equiped)
+                {
+                    attack.StopAllCoroutines();
+                    attack.isAttacking = false;
+                    ChangeBehaviour(EnemyState.Inactive);
+                }
 
                 break;
         }
@@ -69,15 +125,28 @@ public class EnemyBehaviour : MonoBehaviour {
         switch (enemyState)
         {
             case EnemyState.Inactive:
+                visibility.SetInvisible();
                 movement.canMoveToPlayer = false;
                 movement.StopMovement();
                 break;
             case EnemyState.Static:
+                visibility.SetVisible();
                 movement.canMoveToPlayer = false;
                 movement.StopMovement();
                 break;
             case EnemyState.ChasePlayer:
+                visibility.SetVisible();
                 movement.canMoveToPlayer = true;
+                break;
+            case EnemyState.Attack:
+                visibility.SetVisible();
+
+                //stop movement
+                movement.canMoveToPlayer = false; 
+                movement.StopMovement();
+
+                //start attack
+                attack.StartCoroutine(attack.Attack()); 
                 break;
         }
     }
@@ -91,5 +160,16 @@ public class EnemyBehaviour : MonoBehaviour {
         bool detected = Physics.CheckSphere(transform.position, detectionRadius, playerLayer);
         
         return detected;
+    }
+
+    /// <summary>
+    /// Permet de savoir si le player est dans la range d'attack
+    /// </summary>
+    /// <returns></returns>
+    bool CanAttack()
+    {
+        bool canAttack = Physics.CheckSphere(transform.position, attackRadius, playerLayer);
+
+        return canAttack;
     }
 }
