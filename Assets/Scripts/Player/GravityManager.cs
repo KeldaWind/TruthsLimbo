@@ -59,10 +59,13 @@ public class GravityManager
 
             foreach (RaycastHit hit in hits)
             {
-                onGround = true;
-                if(currentVerticalSpeed < 0)
-                    currentVerticalSpeed = 0;
-                break;
+                if (!hit.collider.isTrigger)
+                {
+                    onGround = true;
+                    if (currentVerticalSpeed < 0)
+                        currentVerticalSpeed = 0;
+                    break;
+                }
             }
 
             if (onGround)

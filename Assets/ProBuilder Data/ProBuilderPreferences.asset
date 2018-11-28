@@ -13,10 +13,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Bool_keys: []
   m_Int_keys:
+  - pbHandleAlignment
   - pbDefaultEditLevel
   - pbDefaultSelectionMode
   - pb_GIWorkflowMode
-  - pbHandleAlignment
   m_Float_keys:
   - pbEditorScroll.x
   - pbEditorScroll.y

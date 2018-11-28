@@ -3,14 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class StrangeCorridorBlock : MonoBehaviour {
+    [SerializeField] bool clockward;
+    [SerializeField] float rotatingSpeed;
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    private void Update()
+    {
+        transform.Rotate(new Vector3(Time.deltaTime * (clockward ? 1 : -1) * rotatingSpeed, 0, 0));
+    }
 }
