@@ -97,6 +97,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4203408622667808}
   - component: {fileID: 136937107338632342}
+  - component: {fileID: 114738214401022052}
   m_Layer: 0
   m_Name: Capsule
   m_TagString: Untagged
@@ -439,7 +440,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1390040882274550}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalPosition: {x: 0, y: 1, z: 65}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4347772776378674}
@@ -921,6 +922,18 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
+--- !u!114 &114738214401022052
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1251911770769898}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5272ff26d643f3b429f2ed7cc1cbd7a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  relatedPlayer: {fileID: 114803444915618772}
 --- !u!114 &114803444915618772
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -955,7 +968,7 @@ MonoBehaviour:
     gravityManager:
       gravityDirection: {x: 0, y: 1, z: 0}
       gravityAcceleration: 9.81
-      maximumGravitySpeed: 9.81
+      maximumGravitySpeed: 19.62
       gravityCheckers:
       - {fileID: 4717657686638508}
       - {fileID: 4586765510157496}
@@ -971,7 +984,10 @@ MonoBehaviour:
     forceCrouchCheckers: {fileID: 4647132247906230}
     uncrouchedCrouchCheckersPos: {x: 0, y: 2.9, z: 0}
     crouchedCrouchCheckersPos: {x: 0, y: 1.4, z: 0}
+  lensManager:
+    ownsLens: 0
   lampManager:
+    ownsLamp: 0
     gameCursor: {fileID: 114089364664014356}
     normalGameCursorImage: {fileID: 21300000, guid: b6ad3db0a755b3e4eafe238ca488d1b6,
       type: 3}

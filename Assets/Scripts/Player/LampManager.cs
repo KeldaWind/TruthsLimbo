@@ -65,4 +65,9 @@ public class LampManager {
             activeEnigmaObject.MoveToTheOtherWorld();
         activeEnigmaObject = null;
     }
+
+    public void GainLamp()
+    {
+        ownsLamp = true;
+    }
 }

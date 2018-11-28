@@ -51,6 +51,16 @@ public class Player : MonoBehaviour {
             playerMovements.Jump();
     }
 
+    public void GainLens()
+    {
+        lensManager.GainLens();
+    }
+
+    public void GainLamp()
+    {
+        lampManager.GainLamp();
+    }
+
     #region Physic and Movements
     public Vector3 GetCurrentTotalForce()
     {

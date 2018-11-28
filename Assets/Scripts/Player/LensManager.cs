@@ -27,4 +27,9 @@ public class LensManager {
             return GameManager.gameManager.LensCamera.gameObject.activeInHierarchy;
         }
     }	
+
+    public void GainLens()
+    {
+        ownsLens = true;
+    }
 }
