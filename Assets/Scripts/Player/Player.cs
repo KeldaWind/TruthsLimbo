@@ -47,7 +47,7 @@ public class Player : MonoBehaviour {
 
         bool onGround = playerMovements.GrvtManager.CheckForOnGround();
 
-        if (inputManager.GetJump && onGround)
+        if (inputManager.GetJump && onGround && !playerMovements.Crouched)
             playerMovements.Jump();
     }
 

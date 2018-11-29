@@ -37,7 +37,9 @@ public class InputManager {
     {
         get
         {
-            return Input.GetKey(jumpKey);
+            if(Input.GetKeyDown(jumpKey))
+            Debug.Log("tryJump");
+            return Input.GetKeyDown(jumpKey);
         }
     }
 
