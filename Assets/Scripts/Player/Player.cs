@@ -47,6 +47,8 @@ public class Player : MonoBehaviour {
 
         bool onGround = playerMovements.GrvtManager.CheckForOnGround();
 
+        if(Input.GetKeyDown(KeyCode.Space))
+        Debug.Log("pute la a la fin");
         if (inputManager.GetJump && onGround && !playerMovements.Crouched)
             playerMovements.Jump();
     }
