@@ -7,6 +7,6 @@ public class PlayerHitbox : MonoBehaviour {
 
     public void Die()
     {
-        relatedPlayer.transform.position = Vector3.zero;
+        GameManager.gameManager.checkpointsManager.Respawn(relatedPlayer);
     }
 }

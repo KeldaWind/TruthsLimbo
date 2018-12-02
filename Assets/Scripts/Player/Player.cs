@@ -8,7 +8,23 @@ public class Player : MonoBehaviour {
     [SerializeField] InputManager inputManager;
     [SerializeField] PlayerMovements playerMovements;
     [SerializeField] LensManager lensManager;
+    [SerializeField] PlayerPullability playerPullability;
+
+    public bool HasLens
+    {
+        get
+        {
+            return lensManager.HasLens;
+        }
+    }
     [SerializeField] LampManager lampManager;
+    public bool HasLamp
+    {
+        get
+        {
+            return lampManager.HasLamp;
+        }
+    }
 
     void Start () {
         Cursor.visible = false;
@@ -22,6 +38,8 @@ public class Player : MonoBehaviour {
             if (inputManager.GetLensEquip)
                 lensManager.Equip(!lensManager.Equiped);
         }
+
+        playerPullability.CheckForTakeOrRelease(inputManager, this, GameManager.gameManager.NormalCamera.gameObject.activeInHierarchy ? GameManager.gameManager.NormalCamera : GameManager.gameManager.LensCamera);
 
         playerMovements.CheckCrouch(inputManager.GetCrouch);
 
@@ -48,7 +66,6 @@ public class Player : MonoBehaviour {
         bool onGround = playerMovements.GrvtManager.CheckForOnGround();
 
         if(Input.GetKeyDown(KeyCode.Space))
-        Debug.Log("pute la a la fin");
         if (inputManager.GetJump && onGround && !playerMovements.Crouched)
             playerMovements.Jump();
     }

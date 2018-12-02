@@ -37,8 +37,6 @@ public class InputManager {
     {
         get
         {
-            if(Input.GetKeyDown(jumpKey))
-            Debug.Log("tryJump");
             return Input.GetKeyDown(jumpKey);
         }
     }
@@ -55,6 +53,21 @@ public class InputManager {
     [SerializeField] KeyCode interactKey;
     [SerializeField] KeyCode lensKey;
     [SerializeField] KeyCode laserKey;
+
+    public bool GetInteractDown{
+        get
+        {
+            return Input.GetKeyDown(interactKey);
+        }
+    }
+
+    public bool GetInteractUp
+    {
+        get
+        {
+            return Input.GetKeyUp(interactKey);
+        }
+    }
 
     public bool GetLensEquip
     {
