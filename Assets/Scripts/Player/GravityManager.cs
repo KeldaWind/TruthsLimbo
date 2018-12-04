@@ -23,7 +23,7 @@ public class GravityManager
     {
         Vector3 gravityForce = new Vector3();
 
-        if (CheckForOnGround() && currentVerticalSpeed < 0)
+        if (CheckForOnGround() && currentVerticalSpeed <= 0)
             currentVerticalSpeed = 0;
         else
         {
@@ -31,7 +31,6 @@ public class GravityManager
 
             currentVerticalSpeed = Mathf.Clamp(currentVerticalSpeed, -maximumGravitySpeed, maximumGravitySpeed);
         }
-
         gravityForce = gravityDirection * currentVerticalSpeed * 100 * Time.deltaTime;
 
         return gravityForce;
@@ -53,9 +52,9 @@ public class GravityManager
             ray.origin = checker.position;
             ray.direction = new Vector3(0, -1, 0);
 
-            //Debug.DrawRay(ray.origin, ray.direction * 0.15f, Color.red);
+            Debug.DrawRay(ray.origin, ray.direction * 0.3f, Color.red);
 
-            RaycastHit[] hits = Physics.RaycastAll(ray, 0.15f);
+            RaycastHit[] hits = Physics.RaycastAll(ray, 0.3f);
 
             foreach (RaycastHit hit in hits)
             {
@@ -73,6 +72,43 @@ public class GravityManager
         }
 
         return onGround;
+    }
+
+    public Vector3 GetGroundNormalDirection()
+    {
+        Vector3 normalPosition = new Vector3();
+        Vector3 normalDirection = new Vector3();
+        int counter = 0;
+
+        foreach (Transform checker in gravityCheckers)
+        {
+            Ray ray = new Ray();
+            ray.origin = checker.position;
+            ray.direction = new Vector3(0, -1, 0);
+
+            RaycastHit[] hits = Physics.RaycastAll(ray, 0.3f);
+
+            foreach (RaycastHit hit in hits)
+            {
+                if (!hit.collider.isTrigger)
+                {
+                    normalPosition += hit.point;
+                    normalDirection += hit.normal;
+                    counter++;
+                    break;
+                }
+            }
+        }
+        if (counter == 0)
+            return new Vector3(0, 1, 0);
+
+        normalPosition = normalPosition / (float)counter;
+        normalDirection = normalDirection / (float)counter;
+        normalDirection.Normalize();
+
+        Debug.DrawRay(normalPosition, normalDirection * 0.3f, Color.red);
+
+        return normalDirection;
     }
 
     public void Jump(float jumpForce)

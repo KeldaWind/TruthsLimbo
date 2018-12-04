@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    [SerializeField] Vector3 vectorA;
+    [SerializeField] Vector3 vectorB;
 
     [SerializeField] Rigidbody playerBody;
     [SerializeField] InputManager inputManager;
@@ -34,6 +36,9 @@ public class Player : MonoBehaviour
     }
 	
 	void Update () {
+        if (Input.GetKeyDown(KeyCode.T))
+            InvertVectors(ref vectorA, ref vectorB);
+
         if (lensManager.HasLens)
         {
             if (inputManager.GetLensEquip)
@@ -57,6 +62,11 @@ public class Player : MonoBehaviour
                 lampManager.DesactiveLamp();
             }
         }
+
+        bool onGround = playerMovements.GrvtManager.CheckForOnGround();
+
+        if (inputManager.GetJump && onGround && !playerMovements.Crouched)
+            playerMovements.Jump();
     }
 
     private void FixedUpdate()
@@ -64,11 +74,17 @@ public class Player : MonoBehaviour
         playerBody.velocity = GetCurrentTotalForce();
         playerMovements.MovePlayerCameraAndObject();
 
-        bool onGround = playerMovements.GrvtManager.CheckForOnGround();
+        /*if (inputManager.GetJump)
+        {
+            Debug.Log("get jump");
+            if(onGround)
+                Debug.Log("onGround");
 
-        if(Input.GetKeyDown(KeyCode.Space))
-        if (inputManager.GetJump && onGround && !playerMovements.Crouched)
-            playerMovements.Jump();
+            if (!playerMovements.Crouched)
+                Debug.Log("Uncrouched");
+        }*/
+
+
     }
 
     public void GainLens()
@@ -86,11 +102,28 @@ public class Player : MonoBehaviour
     {
         Vector3 currentTotalForce = new Vector3();
 
-        currentTotalForce += playerMovements.GetCurrentPlayerWalkMove(new Vector3(inputManager.GetLateralInput(), 0, inputManager.GetForwardInput()), inputManager.Running);
+        Vector3 moveDir = playerMovements.GetCurrentPlayerWalkMove(new Vector3(inputManager.GetLateralInput(), 0, inputManager.GetForwardInput()), inputManager.Running).normalized;
+        if (moveDir != Vector3.zero)
+        {
+            Vector3 normalDir = playerMovements.GrvtManager.GetGroundNormalDirection();
+
+            Vector3.OrthoNormalize(ref normalDir, ref moveDir);
+
+            Debug.DrawRay(transform.position, moveDir * 10, Color.red);
+
+            currentTotalForce += playerMovements.GetCurrentPlayerMoveWithRightDirection(moveDir, inputManager.Running);
+        }
 
         currentTotalForce += playerMovements.GrvtManager.GetCurrentGravityForce();
 
         return currentTotalForce;
     }
     #endregion
+
+    public void InvertVectors(ref Vector3 A, ref Vector3 B)
+    {
+        Vector3 stock = A;
+        A = B;
+        B = stock;
+    }
 }

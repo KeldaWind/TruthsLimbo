@@ -18,6 +18,11 @@ public class PlayerMovements {
 
         return currentPlayerWalkMove;
     }
+
+    public Vector3 GetCurrentPlayerMoveWithRightDirection(Vector3 rightDirection, bool running)
+    {
+        return rightDirection * (Crouched ? crouchSpeed : running ? runSpeed : walkSpeed) * 100 * Time.deltaTime;
+    }
     #endregion
 
     #region Look
