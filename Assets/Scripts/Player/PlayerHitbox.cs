@@ -9,4 +9,9 @@ public class PlayerHitbox : MonoBehaviour,IPlayer {
     {
         GameManager.gameManager.checkpointsManager.Respawn(relatedPlayer);
     }
+
+    public void HitPlayer()
+    {
+        Die();
+    }
 }

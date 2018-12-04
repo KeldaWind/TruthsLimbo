@@ -33,6 +33,10 @@ public class EnemyBehaviour : MonoBehaviour {
     [Header("Behaviour Variables")]
     bool activeLamp;
 
+    [Header("Colliders")]
+    [SerializeField] Collider[] bodyColliders;
+    [SerializeField] Collider attackCollider;
+
     //Required refereence
     private LensManager lensManager;
 
@@ -41,9 +45,9 @@ public class EnemyBehaviour : MonoBehaviour {
     void Start ()
     {
         lensManager = GameManager.gameManager.lensManager; //get lesn manager
-	}
+    }
 
-	void Update ()
+    void Update ()
     {
         Behaviour();
 	}
@@ -137,15 +141,28 @@ public class EnemyBehaviour : MonoBehaviour {
                 visibility.SetInvisibleInNormalWorld();
                 movement.canMoveToPlayer = false;
                 movement.StopMovement();
+
+                foreach (Collider bodyCollider in bodyColliders)
+                    bodyCollider.enabled = false;
+                attackCollider.enabled = false;
+
                 break;
             case EnemyState.Static:
                 //visibility.SetVisibleInNormalWorld();
                 movement.canMoveToPlayer = false;
                 movement.StopMovement();
+
+                foreach (Collider bodyCollider in bodyColliders)
+                    bodyCollider.enabled = true;
+                attackCollider.enabled = true;
                 break;
             case EnemyState.ChasePlayer:
                 //visibility.SetVisibleInNormalWorld();
                 movement.canMoveToPlayer = true;
+
+                foreach (Collider bodyCollider in bodyColliders)
+                    bodyCollider.enabled = true;
+                attackCollider.enabled = true;
                 break;
             case EnemyState.Attack:
                 //visibility.SetVisibleInNormalWorld();
@@ -155,7 +172,11 @@ public class EnemyBehaviour : MonoBehaviour {
                 movement.StopMovement();
 
                 //start attack
-                attack.StartCoroutine(attack.Attack()); 
+                attack.StartCoroutine(attack.Attack());
+
+                foreach (Collider bodyCollider in bodyColliders)
+                    bodyCollider.enabled = true;
+                attackCollider.enabled = true;
                 break;
         }
     }
@@ -191,13 +212,11 @@ public class EnemyBehaviour : MonoBehaviour {
         {
             visibility.SetInvisibleInNormalWorld();
             activeLamp = false;
-            Debug.Log("GO BACK");
         }
         if (i == 1)
         {
             visibility.SetVisibleInNormalWorld();
             activeLamp = true;
-            Debug.Log("COME HERE");
         }
     }
 }
