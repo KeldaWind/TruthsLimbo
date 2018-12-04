@@ -12,14 +12,14 @@ public class PlayerPullability {
             Ray ray = mainCamera.ScreenPointToRay(new Vector3(mainCamera.pixelWidth / 2, mainCamera.pixelHeight / 2, 0));
             RaycastHit hit = new RaycastHit();
 
-            if (Physics.Raycast(ray, out hit, 3))
+            /*if (Physics.Raycast(ray, out hit, 3))
             {
                 PullableObject pullableObject = hit.collider.GetComponent<PullableObject>();
                 if (pullableObject != null)
                 {
                     TakeObject(pullableObject.transform, player);
                 }
-            }
+            }*/
         }
         if (inputManager.GetInteractUp)
             ReleaseObject(player);
@@ -32,6 +32,7 @@ public class PlayerPullability {
     }
     public void ReleaseObject(Player player)
     {
-        currenltyPulledObject.parent = null;
+        if(currenltyPulledObject != null)
+            currenltyPulledObject.parent = null;
     }
 }

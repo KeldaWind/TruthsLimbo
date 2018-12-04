@@ -4,14 +4,18 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    [SerializeField] Vector3 vectorA;
-    [SerializeField] Vector3 vectorB;
-
     [SerializeField] Rigidbody playerBody;
     [SerializeField] InputManager inputManager;
     [SerializeField] PlayerMovements playerMovements;
     [SerializeField] LensManager lensManager;
     [SerializeField] PlayerPullability playerPullability;
+    public PlayerPullability PlrPullability
+    {
+        get
+        {
+            return playerPullability;
+        }
+    }
 
     public bool HasLens
     {
@@ -36,16 +40,14 @@ public class Player : MonoBehaviour
     }
 	
 	void Update () {
-        if (Input.GetKeyDown(KeyCode.T))
-            InvertVectors(ref vectorA, ref vectorB);
-
         if (lensManager.HasLens)
         {
             if (inputManager.GetLensEquip)
                 lensManager.Equip(!lensManager.Equiped);
         }
 
-        playerPullability.CheckForTakeOrRelease(inputManager, this, GameManager.gameManager.NormalCamera.gameObject.activeInHierarchy ? GameManager.gameManager.NormalCamera : GameManager.gameManager.LensCamera);
+        CheckInteraction();
+        //playerPullability.CheckForTakeOrRelease(inputManager, this, GameManager.gameManager.NormalCamera.gameObject.activeInHierarchy ? GameManager.gameManager.NormalCamera : GameManager.gameManager.LensCamera);
 
         playerMovements.CheckCrouch(inputManager.GetCrouch);
 
@@ -120,10 +122,30 @@ public class Player : MonoBehaviour
     }
     #endregion
 
-    public void InvertVectors(ref Vector3 A, ref Vector3 B)
+    #region Interactions
+    public void CheckInteraction()
     {
-        Vector3 stock = A;
-        A = B;
-        B = stock;
+        Camera mainCamera = GameManager.gameManager.NormalCamera.gameObject.activeInHierarchy? GameManager.gameManager.NormalCamera : GameManager.gameManager.LensCamera;
+
+        if (inputManager.GetInteractDown)
+        {
+            Ray ray = mainCamera.ScreenPointToRay(new Vector3(mainCamera.pixelWidth / 2, mainCamera.pixelHeight / 2, 0));
+            RaycastHit hit = new RaycastHit();
+
+            if (Physics.Raycast(ray, out hit, 3))
+            {
+                IInteracible interactibleObject = hit.collider.GetComponent<IInteracible>();
+                if (interactibleObject != null)
+                {
+                    interactibleObject.Interact(this);
+                }
+            }
+        }
+
+        if (inputManager.GetInteractUp)
+        {
+            playerPullability.ReleaseObject(this);
+        }
     }
+    #endregion
 }
