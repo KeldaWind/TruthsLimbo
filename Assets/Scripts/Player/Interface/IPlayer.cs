@@ -4,6 +4,6 @@ using UnityEngine;
 
 public interface IPlayer
 {
-
+    void HitPlayer();
 
 }

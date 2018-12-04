@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour, IPlayer
+public class Player : MonoBehaviour
 {
 
     [SerializeField] Rigidbody playerBody;
@@ -23,7 +23,6 @@ public class Player : MonoBehaviour, IPlayer
     {
         get
         {
-            Debug.Log("PUTEUH");
             return lampManager.HasLamp;
         }
     }
