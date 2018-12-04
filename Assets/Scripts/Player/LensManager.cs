@@ -18,6 +18,7 @@ public class LensManager {
     {
         GameManager.gameManager.NormalCamera.gameObject.SetActive(!equip);
         GameManager.gameManager.LensCamera.gameObject.SetActive(equip);
+        GameManager.gameManager.SetLensActive(equip);
     }
 
     public bool Equiped

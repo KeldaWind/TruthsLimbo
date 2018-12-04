@@ -11,6 +11,25 @@ public class GameManager : MonoBehaviour {
     public LensManager lensManager;
     public CheckpointsManager checkpointsManager;
 
+    [Header("Player Infos")]
+    bool lensActivated;
+    public bool LensActivated
+    {
+        get
+        {
+            return lensActivated;
+        }
+    }
+
+    bool lampActivated;
+    public bool LampActivated
+    {
+        get
+        {
+            return lampActivated;
+        }
+    }
+
     public Camera NormalCamera
     {
         get
@@ -40,4 +59,14 @@ public class GameManager : MonoBehaviour {
     {
 		
 	}
+
+    public void SetLensActive(bool active)
+    {
+        lensActivated = active;
+    }
+
+    public void SetLampActive(bool active)
+    {
+        lampActivated = active;
+    }
 }

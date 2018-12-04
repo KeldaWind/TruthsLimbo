@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class EnigmaObject : MonoBehaviour {
     /// <summary>
@@ -18,6 +19,8 @@ public class EnigmaObject : MonoBehaviour {
     [SerializeField] Collider objectCollider;
     [SerializeField] Renderer objectRenderer;
     [SerializeField] Rigidbody objectBody;
+    [SerializeField] NavMeshObstacle objectNavMeshObstacle;
+    
 
     private void Start()
     {
@@ -51,6 +54,12 @@ public class EnigmaObject : MonoBehaviour {
             objectBody.velocity = Vector3.zero;
             objectBody.angularVelocity = Vector3.zero;
         }
+
+        if (objectNavMeshObstacle == null)
+            objectNavMeshObstacle = GetComponent<NavMeshObstacle>();
+
+        if (objectNavMeshObstacle != null)
+            objectNavMeshObstacle.enabled = isReal;
 
         gameObject.layer = isReal ? 9 : 10;
     }
