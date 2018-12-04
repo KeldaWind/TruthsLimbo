@@ -16,6 +16,7 @@ public class RevealAfterLamp : MonoBehaviour {
 
     private void FixedUpdate()
     {
+        if(player != null)
         if(player.GetComponent<Player>().HasLamp == true)
         {
             Debug.Log("Choppe la lampe");
