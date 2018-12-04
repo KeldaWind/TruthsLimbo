@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerHitbox : MonoBehaviour {
+public class PlayerHitbox : MonoBehaviour,IPlayer {
     public Player relatedPlayer;
 
     public void Die()
