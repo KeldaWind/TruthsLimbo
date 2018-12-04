@@ -30,6 +30,13 @@ public class EnemyBehaviour : MonoBehaviour {
     public float attackRadius = 2;
     bool playerDetected;
 
+    [Header("Behaviour Variables")]
+    bool activeLamp;
+
+    [Header("Colliders")]
+    [SerializeField] Collider[] bodyColliders;
+    [SerializeField] Collider attackCollider;
+
     //Required refereence
     private LensManager lensManager;
 
@@ -38,9 +45,9 @@ public class EnemyBehaviour : MonoBehaviour {
     void Start ()
     {
         lensManager = GameManager.gameManager.lensManager; //get lesn manager
-	}
+    }
 
-	void Update ()
+    void Update ()
     {
         Behaviour();
 	}
@@ -54,7 +61,7 @@ public class EnemyBehaviour : MonoBehaviour {
         {
             case EnemyState.Inactive:
 
-                if (lensManager.Equiped)
+                if (lensManager.Equiped || activeLamp)
                 {
                     ChangeBehaviour(EnemyState.Static);
                 }
@@ -70,7 +77,7 @@ public class EnemyBehaviour : MonoBehaviour {
                 }
 
                 //check lens
-                if (!lensManager.Equiped)
+                if (!lensManager.Equiped && !activeLamp)
                 {
                     ChangeBehaviour(EnemyState.Inactive);
                 }
@@ -81,7 +88,7 @@ public class EnemyBehaviour : MonoBehaviour {
                 movement.MoveToPlayer(); //move to player
 
                 //Check lens
-                if (!lensManager.Equiped)
+                if (!lensManager.Equiped && !activeLamp)
                 {
                     ChangeBehaviour(EnemyState.Inactive);
                 }
@@ -103,7 +110,7 @@ public class EnemyBehaviour : MonoBehaviour {
                 }
 
                 //Check lens
-                if (!lensManager.Equiped)
+                if (!lensManager.Equiped && !activeLamp)
                 {
                     attack.StopAllCoroutines();
                     attack.isAttacking = false;
@@ -112,6 +119,12 @@ public class EnemyBehaviour : MonoBehaviour {
 
                 break;
         }
+
+        if (GameManager.gameManager.LampActivated && !activeLamp)
+            ChangeEnemyWorld(1);
+
+        if (!GameManager.gameManager.LampActivated && activeLamp)
+            ChangeEnemyWorld(0);
     }
 
     /// <summary>
@@ -125,28 +138,45 @@ public class EnemyBehaviour : MonoBehaviour {
         switch (enemyState)
         {
             case EnemyState.Inactive:
-                visibility.SetInvisible();
+                visibility.SetInvisibleInNormalWorld();
                 movement.canMoveToPlayer = false;
                 movement.StopMovement();
+
+                foreach (Collider bodyCollider in bodyColliders)
+                    bodyCollider.enabled = false;
+                attackCollider.enabled = false;
+
                 break;
             case EnemyState.Static:
-                visibility.SetVisible();
+                //visibility.SetVisibleInNormalWorld();
                 movement.canMoveToPlayer = false;
                 movement.StopMovement();
+
+                foreach (Collider bodyCollider in bodyColliders)
+                    bodyCollider.enabled = true;
+                attackCollider.enabled = true;
                 break;
             case EnemyState.ChasePlayer:
-                visibility.SetVisible();
+                //visibility.SetVisibleInNormalWorld();
                 movement.canMoveToPlayer = true;
+
+                foreach (Collider bodyCollider in bodyColliders)
+                    bodyCollider.enabled = true;
+                attackCollider.enabled = true;
                 break;
             case EnemyState.Attack:
-                visibility.SetVisible();
+                //visibility.SetVisibleInNormalWorld();
 
                 //stop movement
                 movement.canMoveToPlayer = false; 
                 movement.StopMovement();
 
                 //start attack
-                attack.StartCoroutine(attack.Attack()); 
+                attack.StartCoroutine(attack.Attack());
+
+                foreach (Collider bodyCollider in bodyColliders)
+                    bodyCollider.enabled = true;
+                attackCollider.enabled = true;
                 break;
         }
     }
@@ -171,5 +201,22 @@ public class EnemyBehaviour : MonoBehaviour {
         bool canAttack = Physics.CheckSphere(transform.position, attackRadius, playerLayer);
 
         return canAttack;
+    }
+
+    /// <summary>
+    /// 0 pour remettre l'ennemi dans son monde d'origine, 1 pour le mettre dans le monde normal
+    /// </summary>
+    public void ChangeEnemyWorld(int i)
+    {
+        if (i == 0)
+        {
+            visibility.SetInvisibleInNormalWorld();
+            activeLamp = false;
+        }
+        if (i == 1)
+        {
+            visibility.SetVisibleInNormalWorld();
+            activeLamp = true;
+        }
     }
 }
