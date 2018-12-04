@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour {
+public class Player : MonoBehaviour, IPlayer
+{
 
     [SerializeField] Rigidbody playerBody;
     [SerializeField] InputManager inputManager;
