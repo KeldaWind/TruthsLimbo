@@ -57,6 +57,8 @@ public class LampManager {
 
         objectToActive.MoveToTheOtherWorld();
         activeEnigmaObject = objectToActive;
+
+        GameManager.gameManager.SetLampActive(true);
     }
 
     public void DesactiveLamp()
@@ -64,6 +66,8 @@ public class LampManager {
         if(activeEnigmaObject != null)
             activeEnigmaObject.MoveToTheOtherWorld();
         activeEnigmaObject = null;
+
+        GameManager.gameManager.SetLampActive(false);
     }
 
     public void GainLamp()

@@ -8,6 +8,7 @@ using UnityEngine;
 public class EnemyVisibility : MonoBehaviour {
 
     public Renderer[] renderers;
+    public Collider[] colliders;
     private List<Color> initialColors =  new List<Color>();
     
 	void Start ()
@@ -19,22 +20,25 @@ public class EnemyVisibility : MonoBehaviour {
         }	
 	}
 
-    public void SetVisible()
+    public void SetVisibleInNormalWorld()
     {
         for (int i = 0; i < renderers.Length; i++)
         {
-            renderers[i].material.color = initialColors[i];
+            renderers[i].gameObject.layer = 0;
+            //renderers[i].material.color = initialColors[i];
         }
     }
 
-    public void SetInvisible()
+    public void SetInvisibleInNormalWorld()
     {
 
         for (int i = 0; i < renderers.Length; i++)
         {
-            Color c = new Color(initialColors[i].r, initialColors[i].g, initialColors[i].b, 0);
-            renderers[i].material.color = c;
+            renderers[i].gameObject.layer = 9;
+            //Color c = new Color(initialColors[i].r, initialColors[i].g, initialColors[i].b, 0);
+            //renderers[i].material.color = c;
         }
+
     }
 
 
