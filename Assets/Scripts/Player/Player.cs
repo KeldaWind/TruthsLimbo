@@ -23,6 +23,7 @@ public class Player : MonoBehaviour, IPlayer
     {
         get
         {
+            Debug.Log("PUTEUH");
             return lampManager.HasLamp;
         }
     }
