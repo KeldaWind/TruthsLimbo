@@ -23,7 +23,7 @@ public class Door : MonoBehaviour, IInteracible
             {
                 Debug.Log("opening");
                 JointSpring newSpring = doorHingeJoint.spring;
-                if(!firstOpening)
+                if (!firstOpening)
                     newSpring.targetPosition = 90;
                 doorHingeJoint.spring = newSpring;
 
@@ -58,5 +58,24 @@ public class Door : MonoBehaviour, IInteracible
             if (opened)
                 firstOpening = false;
         }
+    }
+
+    public void LockDoor(bool needLens)
+    {
+        if (needLens && !GameManager.gameManager.player.HasLens)
+            return;
+
+        openable = false;
+        opened = false;
+    }
+
+    public void UnlockDoor(bool needLens)
+    {
+        if (needLens && !GameManager.gameManager.player.HasLens)
+            return;
+
+        openable = true;
+        opened = true;
+        firstOpening = false;
     }
 }

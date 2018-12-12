@@ -48,6 +48,7 @@ public class Player : MonoBehaviour
 
         CheckInteraction();
         //playerPullability.CheckForTakeOrRelease(inputManager, this, GameManager.gameManager.NormalCamera.gameObject.activeInHierarchy ? GameManager.gameManager.NormalCamera : GameManager.gameManager.LensCamera);
+        playerPullability.UpdatePull(transform.position);
 
         playerMovements.CheckCrouch(inputManager.GetCrouch);
 

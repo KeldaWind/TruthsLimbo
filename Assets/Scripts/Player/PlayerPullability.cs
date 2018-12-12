@@ -5,6 +5,8 @@ using UnityEngine;
 [System.Serializable]
 public class PlayerPullability {
     Transform currenltyPulledObject;
+    Vector3 lastFramePosition;
+
     public void CheckForTakeOrRelease(InputManager inputManager, Player player, Camera mainCamera)
     {
         if (inputManager.GetInteractDown)
@@ -27,12 +29,23 @@ public class PlayerPullability {
 
     public void TakeObject(Transform objectToTake, Player player)
     {
-        objectToTake.parent = player.transform;
+        //objectToTake.parent = player.transform;
         currenltyPulledObject = objectToTake;
     }
     public void ReleaseObject(Player player)
     {
+        //if(currenltyPulledObject != null)
+        //currenltyPulledObject.parent = null;
+        currenltyPulledObject = null;
+    }
+
+    public void UpdatePull(Vector3 playerPos)
+    {
+        Vector3 playerMove = playerPos - lastFramePosition;
+
         if(currenltyPulledObject != null)
-            currenltyPulledObject.parent = null;
+            currenltyPulledObject.position += playerMove;
+
+        lastFramePosition = playerPos;
     }
 }
