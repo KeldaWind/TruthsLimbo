@@ -17,6 +17,16 @@ public class Player : MonoBehaviour
         }
     }
 
+    [SerializeField] DocumentReadability documentReadability;
+    public DocumentReadability PlayerDocumentReadability
+    {
+        get
+        {
+            return documentReadability;
+        }
+    }
+
+
     public bool HasLens
     {
         get
@@ -130,6 +140,11 @@ public class Player : MonoBehaviour
 
         if (inputManager.GetInteractDown)
         {
+            if (documentReadability.opened)
+            {
+                documentReadability.CloseDocument();
+            }
+
             Ray ray = mainCamera.ScreenPointToRay(new Vector3(mainCamera.pixelWidth / 2, mainCamera.pixelHeight / 2, 0));
             RaycastHit hit = new RaycastHit();
 

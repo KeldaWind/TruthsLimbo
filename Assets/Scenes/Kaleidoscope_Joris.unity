@@ -496,6 +496,7 @@ MonoBehaviour:
   objectCollider: {fileID: 0}
   objectRenderer: {fileID: 0}
   objectBody: {fileID: 0}
+  objectNavMeshObstacle: {fileID: 0}
 --- !u!43 &19874398
 Mesh:
   m_ObjectHideFlags: 0
@@ -1556,6 +1557,7 @@ MonoBehaviour:
   objectCollider: {fileID: 0}
   objectRenderer: {fileID: 0}
   objectBody: {fileID: 0}
+  objectNavMeshObstacle: {fileID: 0}
 --- !u!43 &57881348
 Mesh:
   m_ObjectHideFlags: 0
@@ -2616,6 +2618,7 @@ MonoBehaviour:
   objectCollider: {fileID: 0}
   objectRenderer: {fileID: 0}
   objectBody: {fileID: 0}
+  objectNavMeshObstacle: {fileID: 0}
 --- !u!43 &184202087
 Mesh:
   m_ObjectHideFlags: 0
@@ -8320,6 +8323,7 @@ MonoBehaviour:
   objectCollider: {fileID: 0}
   objectRenderer: {fileID: 0}
   objectBody: {fileID: 0}
+  objectNavMeshObstacle: {fileID: 0}
 --- !u!1 &441143193
 GameObject:
   m_ObjectHideFlags: 0
@@ -12822,6 +12826,7 @@ MonoBehaviour:
   objectCollider: {fileID: 0}
   objectRenderer: {fileID: 0}
   objectBody: {fileID: 0}
+  objectNavMeshObstacle: {fileID: 0}
 --- !u!43 &763752074
 Mesh:
   m_ObjectHideFlags: 0
@@ -14983,6 +14988,7 @@ MonoBehaviour:
   objectCollider: {fileID: 0}
   objectRenderer: {fileID: 0}
   objectBody: {fileID: 0}
+  objectNavMeshObstacle: {fileID: 0}
 --- !u!1 &800668193
 GameObject:
   m_ObjectHideFlags: 0
@@ -17703,6 +17709,7 @@ MonoBehaviour:
   objectCollider: {fileID: 0}
   objectRenderer: {fileID: 0}
   objectBody: {fileID: 0}
+  objectNavMeshObstacle: {fileID: 0}
 --- !u!1 &950735325
 GameObject:
   m_ObjectHideFlags: 0
@@ -31519,6 +31526,7 @@ MonoBehaviour:
   objectCollider: {fileID: 0}
   objectRenderer: {fileID: 0}
   objectBody: {fileID: 0}
+  objectNavMeshObstacle: {fileID: 0}
 --- !u!1 &2013771062
 GameObject:
   m_ObjectHideFlags: 0

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LensObject : MonoBehaviour {
+public class LensObject : MonoBehaviour, IInteracible {
     private void OnTriggerEnter(Collider other)
     {
         PlayerHitbox player = other.GetComponent<PlayerHitbox>();
@@ -11,5 +11,11 @@ public class LensObject : MonoBehaviour {
             player.relatedPlayer.GainLens();
             Destroy(gameObject);
         }
+    }
+
+    public void Interact(Player player)
+    {
+        player.GainLens();
+        Destroy(gameObject);
     }
 }

@@ -62,6 +62,8 @@ public class Door : MonoBehaviour, IInteracible
 
     public void LockDoor(bool needLens)
     {
+        Debug.Log("Blocage" + (needLens ? " besoin lentille : " : ": ") + GameManager.gameManager.player.HasLens);
+
         if (needLens && !GameManager.gameManager.player.HasLens)
             return;
 
@@ -71,6 +73,8 @@ public class Door : MonoBehaviour, IInteracible
 
     public void UnlockDoor(bool needLens)
     {
+        Debug.Log("Blocage" + (needLens ? " besoin lentille : " : ": ") + GameManager.gameManager.player.HasLens);
+
         if (needLens && !GameManager.gameManager.player.HasLens)
             return;
 
