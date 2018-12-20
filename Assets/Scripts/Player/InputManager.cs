@@ -23,7 +23,7 @@ public class InputManager {
     [Space] [Header("Moving Secondary Inputs")]
     [SerializeField] KeyCode jumpKey;
     [SerializeField] KeyCode runKey;
-    [SerializeField] KeyCode crouchKey;
+    [SerializeField] KeyCode[] crouchKeys;
 
     public bool Running
     {
@@ -45,7 +45,18 @@ public class InputManager {
     {
         get
         {
-            return Input.GetKey(crouchKey);
+            bool pressed = false;
+
+            foreach(KeyCode key in crouchKeys)
+            {
+                if (Input.GetKey(key))
+                {
+                    pressed = true;
+                    break;
+                }
+            }
+
+            return pressed;
         }
     }
 
