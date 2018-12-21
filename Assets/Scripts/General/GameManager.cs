@@ -57,8 +57,7 @@ public class GameManager : MonoBehaviour {
 	
 	void Update ()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-            Debug.Log("espace");
+
 	}
 
     public void SetLensActive(bool active)

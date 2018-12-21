@@ -21,7 +21,6 @@ public class Door : MonoBehaviour, IInteracible
 
             if (!wideOpen)
             {
-                Debug.Log("opening");
                 JointSpring newSpring = doorHingeJoint.spring;
                 if (!firstOpening)
                     newSpring.targetPosition = 90;
@@ -37,7 +36,6 @@ public class Door : MonoBehaviour, IInteracible
             wideOpen = false;
             if (!wideClosed)
             {
-                Debug.Log("closing");
                 JointSpring newSpring = doorHingeJoint.spring;
                 newSpring.targetPosition = 0;
                 doorHingeJoint.spring = newSpring;
@@ -62,7 +60,7 @@ public class Door : MonoBehaviour, IInteracible
 
     public void LockDoor(bool needLens)
     {
-        Debug.Log("Blocage" + (needLens ? " besoin lentille : " : ": ") + GameManager.gameManager.player.HasLens);
+        //Debug.Log("Blocage" + (needLens ? " besoin lentille : " : ": ") + GameManager.gameManager.player.HasLens);
 
         if (needLens && !GameManager.gameManager.player.HasLens)
             return;
@@ -73,7 +71,7 @@ public class Door : MonoBehaviour, IInteracible
 
     public void UnlockDoor(bool needLens)
     {
-        Debug.Log("Blocage" + (needLens ? " besoin lentille : " : ": ") + GameManager.gameManager.player.HasLens);
+        //Debug.Log("Blocage" + (needLens ? " besoin lentille : " : ": ") + GameManager.gameManager.player.HasLens);
 
         if (needLens && !GameManager.gameManager.player.HasLens)
             return;
