@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class ObservableObject : MonoBehaviour, IInteracible
 {
-    [SerializeField] Sprite relatedImage;
+    [SerializeField] ReadableDocument document;
+
     public void Interact(Player player)
     {
-        player.PlayerDocumentReadability.OpenDocument(relatedImage);
+        player.PlayerDocumentReadability.OpenDocument(document);
     }
 }

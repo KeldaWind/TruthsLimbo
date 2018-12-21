@@ -19,7 +19,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4691848658914294}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: CrouchChecker
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -36,7 +36,7 @@ GameObject:
   - component: {fileID: 224500620036135286}
   - component: {fileID: 222058413452706108}
   - component: {fileID: 114171743924151194}
-  m_Layer: 5
+  m_Layer: 11
   m_Name: Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -51,7 +51,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4521675881230780}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: CrouchChecker
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -66,7 +66,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4862755080970958}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: GravityChecker (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -81,7 +81,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4299139717033648}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: ColliderPivot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -98,7 +98,7 @@ GameObject:
   - component: {fileID: 4203408622667808}
   - component: {fileID: 136937107338632342}
   - component: {fileID: 114738214401022052}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Capsule
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -116,7 +116,7 @@ GameObject:
   - component: {fileID: 223418612455445010}
   - component: {fileID: 114337617522628752}
   - component: {fileID: 114291588810655454}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -131,7 +131,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4346051211112022}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: CrouchChecker
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -146,7 +146,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4347772776378674}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Cameras
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -164,7 +164,7 @@ GameObject:
   - component: {fileID: 223629893452908484}
   - component: {fileID: 114271189257145102}
   - component: {fileID: 114307055685580480}
-  m_Layer: 5
+  m_Layer: 11
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -179,7 +179,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4647132247906230}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: CrouchCheckers
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -194,7 +194,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4757314929188098}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: GravityChecker (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -211,7 +211,7 @@ GameObject:
   - component: {fileID: 4542662384064602}
   - component: {fileID: 20708436171469428}
   - component: {fileID: 81185774569270732}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: MonocleCamera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -226,7 +226,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4061377318428384}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: GravityCheckers
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -243,7 +243,7 @@ GameObject:
   - component: {fileID: 4772363327528514}
   - component: {fileID: 20939988602011728}
   - component: {fileID: 81660331918606356}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: NormalCamera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -260,7 +260,7 @@ GameObject:
   - component: {fileID: 4291871402840536}
   - component: {fileID: 114803444915618772}
   - component: {fileID: 54982370807204666}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -277,7 +277,7 @@ GameObject:
   - component: {fileID: 224738110646575306}
   - component: {fileID: 222206261737126964}
   - component: {fileID: 114089364664014356}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: GameCursor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -293,7 +293,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4665625703570702}
   - component: {fileID: 108765369128477952}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Point Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -308,7 +308,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4066569875102996}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: CrouchChecker
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -323,8 +323,25 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4586765510157496}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: GravityChecker (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1668949006297416
+GameObject:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 224708078542767978}
+  - component: {fileID: 222816598189406020}
+  - component: {fileID: 114971028421325798}
+  m_Layer: 11
+  m_Name: TutoText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -338,7 +355,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4717657686638508}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: GravityChecker
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -353,7 +370,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4033920803549354}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: CrouchChecker
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -368,7 +385,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4811386404582742}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: GravityChecker (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -385,7 +402,7 @@ GameObject:
   - component: {fileID: 4486100377260190}
   - component: {fileID: 33348887620021266}
   - component: {fileID: 23480109083757998}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: Lens
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -472,8 +489,8 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1390040882274550}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalRotation: {x: -0, y: -0.99998975, z: -0, w: 0.0045366012}
+  m_LocalPosition: {x: 1.2, y: 1.9, z: -0.8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4347772776378674}
@@ -483,7 +500,7 @@ Transform:
   - {fileID: 4665625703570702}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -179.48001, z: 0}
 --- !u!4 &4299139717033648
 Transform:
   m_ObjectHideFlags: 1
@@ -657,7 +674,7 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1366800727793562}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -1096,7 +1113,52 @@ MonoBehaviour:
     uncrouchedCrouchCheckersPos: {x: 0, y: 2.9, z: 0}
     crouchedCrouchCheckersPos: {x: 0, y: 1.4, z: 0}
   lensManager:
-    ownsLens: 0
+    ownsLens: 1
+  playerTutorial:
+    zqsdTuto:
+      text: {fileID: 114971028421325798}
+      line: "Appuyez sur ZQSD pour vous d\xE9placer"
+      keysToCheck:
+      - keyToPress: 122
+      - keyToPress: 113
+      - keyToPress: 115
+      - keyToPress: 100
+      checkJustOne: 0
+    jumpTuto:
+      text: {fileID: 114971028421325798}
+      line: Appuyez sur Espace pour sauter
+      keysToCheck:
+      - keyToPress: 32
+      checkJustOne: 0
+    crouchTuto:
+      text: {fileID: 114971028421325798}
+      line: Maintenez C ou Ctrl Gauche pour vous accroupir
+      keysToCheck:
+      - keyToPress: 99
+      - keyToPress: 306
+      checkJustOne: 1
+    interactTuto:
+      text: {fileID: 114971028421325798}
+      line: "Appuyez ou maintenez E pour int\xE9ragir avec certains objets"
+      keysToCheck:
+      - keyToPress: 101
+      checkJustOne: 0
+    lensTuto:
+      text: {fileID: 114971028421325798}
+      line: Appuyez sur F pour mettre ou enlever la lentille
+      keysToCheck:
+      - keyToPress: 102
+      checkJustOne: 1
+    lampTuto:
+      text: {fileID: 114971028421325798}
+      line: Appuyez sur clic gauche en pointant sur un Illusion pour en faire un Secret
+      keysToCheck: []
+      checkJustOne: 0
+    removeLampTuto:
+      text: {fileID: 114971028421325798}
+      line: Appuyez sur clic droit pour la retransformer en Illusion
+      keysToCheck: []
+      checkJustOne: 0
   documentReadability:
     opened: 0
     documentImage: {fileID: 114685341520345370}
@@ -1109,6 +1171,39 @@ MonoBehaviour:
       type: 3}
     interactibleGameCursorImage: {fileID: 21300000, guid: ea1e473e71d7de94eb1ff95c58042525,
       type: 3}
+--- !u!114 &114971028421325798
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1668949006297416}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 64
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 3
+    m_MaxSize: 64
+    m_Alignment: 4
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: 
 --- !u!136 &136937107338632342
 CapsuleCollider:
   m_ObjectHideFlags: 1
@@ -1142,6 +1237,13 @@ CanvasRenderer:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1950870699172862}
+  m_CullTransparentMesh: 0
+--- !u!222 &222816598189406020
+CanvasRenderer:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1668949006297416}
   m_CullTransparentMesh: 0
 --- !u!223 &223418612455445010
 Canvas:
@@ -1213,6 +1315,7 @@ RectTransform:
   m_Children:
   - {fileID: 224738110646575306}
   - {fileID: 224620625131482726}
+  - {fileID: 224708078542767978}
   m_Father: {fileID: 4347772776378674}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1258,6 +1361,24 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!224 &224708078542767978
+RectTransform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1668949006297416}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 224585217206034626}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 1800, y: 640}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224738110646575306
 RectTransform:
   m_ObjectHideFlags: 1

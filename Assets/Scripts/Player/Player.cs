@@ -16,6 +16,7 @@ public class Player : MonoBehaviour
             return playerPullability;
         }
     }
+    [SerializeField] TutorialManager playerTutorial;
 
     [SerializeField] DocumentReadability documentReadability;
     public DocumentReadability PlayerDocumentReadability
@@ -53,7 +54,10 @@ public class Player : MonoBehaviour
         if (lensManager.HasLens)
         {
             if (inputManager.GetLensEquip)
+            {
                 lensManager.Equip(!lensManager.Equiped);
+                documentReadability.SwitchDocumentImage();
+            }
         }
 
         CheckInteraction();
@@ -68,11 +72,13 @@ public class Player : MonoBehaviour
             if (lampEnigmaObject != null && Input.GetMouseButtonDown(0))
             {
                 lampManager.ActiveLamp(lampEnigmaObject);
+                playerTutorial.ValidateLampUse();
             }
 
             if (Input.GetMouseButtonDown(1))
             {
                 lampManager.DesactiveLamp();
+                playerTutorial.ValidateLampRemove();
             }
         }
 
@@ -80,6 +86,8 @@ public class Player : MonoBehaviour
 
         if (inputManager.GetJump && onGround && !playerMovements.Crouched)
             playerMovements.Jump();
+
+        playerTutorial.Update();
     }
 
     private void FixedUpdate()
@@ -153,6 +161,7 @@ public class Player : MonoBehaviour
                 IInteracible interactibleObject = hit.collider.GetComponent<IInteracible>();
                 if (interactibleObject != null)
                 {
+                    playerTutorial.ValidateInteraction();
                     interactibleObject.Interact(this);
                 }
             }
