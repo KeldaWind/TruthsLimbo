@@ -17,6 +17,7 @@ public class Player : MonoBehaviour
         }
     }
     [SerializeField] TutorialManager playerTutorial;
+    [SerializeField] PlayerSoundsManager soundsManager;
 
     [SerializeField] DocumentReadability documentReadability;
     public DocumentReadability PlayerDocumentReadability
@@ -48,6 +49,7 @@ public class Player : MonoBehaviour
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
         lampManager.CheckForLookedObject(GameManager.gameManager.NormalCamera.gameObject.activeInHierarchy ? GameManager.gameManager.NormalCamera : GameManager.gameManager.LensCamera);
+        soundsManager.SetUp();
     }
 	
 	void Update () {
@@ -133,6 +135,8 @@ public class Player : MonoBehaviour
             Debug.DrawRay(transform.position, moveDir * 10, Color.red);
 
             currentTotalForce += playerMovements.GetCurrentPlayerMoveWithRightDirection(moveDir, inputManager.Running);
+
+            soundsManager.UpdateStepSound(inputManager.Running);
         }
 
         currentTotalForce += playerMovements.GrvtManager.GetCurrentGravityForce();

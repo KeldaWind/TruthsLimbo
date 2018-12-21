@@ -58,6 +58,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1136161475692438
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4116869409971310}
+  - component: {fileID: 82125586200926892}
+  m_Layer: 11
+  m_Name: Audio Source
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1184814335917286
 GameObject:
   m_ObjectHideFlags: 1
@@ -470,6 +486,19 @@ Transform:
   m_Father: {fileID: 4647132247906230}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4116869409971310
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1136161475692438}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4291871402840536}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4203408622667808
 Transform:
   m_ObjectHideFlags: 1
@@ -489,8 +518,8 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1390040882274550}
-  m_LocalRotation: {x: -0, y: -0.99998975, z: -0, w: 0.0045366012}
-  m_LocalPosition: {x: 1.2, y: 1.9, z: -0.8}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4347772776378674}
@@ -498,6 +527,7 @@ Transform:
   - {fileID: 4061377318428384}
   - {fileID: 4647132247906230}
   - {fileID: 4665625703570702}
+  - {fileID: 4116869409971310}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: -179.48001, z: 0}
@@ -858,6 +888,101 @@ AudioListener:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1366800727793562}
   m_Enabled: 1
+--- !u!82 &82125586200926892
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1136161475692438}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 5
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!108 &108765369128477952
 Light:
   m_ObjectHideFlags: 1
@@ -1159,6 +1284,18 @@ MonoBehaviour:
       line: Appuyez sur clic droit pour la retransformer en Illusion
       keysToCheck: []
       checkJustOne: 0
+  soundsManager:
+    stepSource: {fileID: 82125586200926892}
+    stepSounds:
+    - {fileID: 8300000, guid: c7f06f14a398ecc4693170097b08c3cd, type: 3}
+    - {fileID: 8300000, guid: 8f58db19aeb3c1b49b769389d2862838, type: 3}
+    - {fileID: 8300000, guid: bfffcf72d89ff1141ad90486f2a8b14b, type: 3}
+    - {fileID: 8300000, guid: ea08b9a7dcbb01644928576ba366318f, type: 3}
+    - {fileID: 8300000, guid: b7ba0586830453b459072a698a9ce7a3, type: 3}
+    - {fileID: 8300000, guid: 5658b3ddb8e620b4ba3f87952d0883c9, type: 3}
+    - {fileID: 8300000, guid: 49698eb1c91715844bbabb7be1811f77, type: 3}
+    - {fileID: 8300000, guid: 2620920c1fd133f4daf5721847e0abcc, type: 3}
+    numberOfStepsPerSeconds: 2
   documentReadability:
     opened: 0
     documentImage: {fileID: 114685341520345370}
