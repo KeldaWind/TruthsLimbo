@@ -56,7 +56,6 @@ public class TutorialManager {
         }
         else if (!lensTuto.Ended)
         {
-            Debug.Log("lentille");
             if (GameManager.gameManager.player.HasLens)
             {
                 if (!lensTuto.Started)
@@ -143,8 +142,8 @@ public class InputTutorial
             }
         }
 
-        if (done)
-            Debug.Log("Oui");
+        /*if (done)
+            Debug.Log("Oui");*/
 
         if (done)
             StopToShow();
