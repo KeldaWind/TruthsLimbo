@@ -14,10 +14,10 @@ public class LampManager {
         }
     }
 
-    [SerializeField] Image gameCursor;
+    /*[SerializeField] Image gameCursor;
     [SerializeField] Sprite normalGameCursorImage;
     [SerializeField] Sprite lampActiveGameCursorImage;
-    [SerializeField] Sprite interactibleGameCursorImage;
+    [SerializeField] Sprite interactibleGameCursorImage;*/
     EnigmaObject activeEnigmaObject;
 
     public EnigmaObject CheckForLookedObject(Camera mainCamera)
@@ -33,7 +33,7 @@ public class LampManager {
             {
                 if (!enigmaObject.IsReal)
                 {
-                    gameCursor.sprite = interactibleGameCursorImage;
+                    //gameCursor.sprite = interactibleGameCursorImage;
                     enigmaTouched = true;
                     return enigmaObject;
                 }
@@ -41,10 +41,10 @@ public class LampManager {
         }
         if (!enigmaTouched)
         {
-            if (activeEnigmaObject != null)
+            /*if (activeEnigmaObject != null)
                 gameCursor.sprite = lampActiveGameCursorImage;
             else
-                gameCursor.sprite = normalGameCursorImage;
+                gameCursor.sprite = normalGameCursorImage;*/
         }
 
         return null;
@@ -73,5 +73,13 @@ public class LampManager {
     public void GainLamp()
     {
         ownsLamp = true;
+    }
+
+    public bool LampIsOn
+    {
+        get
+        {
+            return activeEnigmaObject != null;
+        }
     }
 }

@@ -20,6 +20,7 @@ public class TutorialManager {
 
     [Header("Lentille")]
     [SerializeField] InputTutorial lensTuto;
+    [SerializeField] InputTutorial lensDescriptionTuto;
 
     [Header("Kaléidoscope")]
     [SerializeField] InputTutorial lampTuto;
@@ -56,7 +57,6 @@ public class TutorialManager {
         }
         else if (!lensTuto.Ended)
         {
-            Debug.Log("lentille");
             if (GameManager.gameManager.player.HasLens)
             {
                 if (!lensTuto.Started)
@@ -64,6 +64,13 @@ public class TutorialManager {
                 else
                     lensTuto.CheckForInputDone();
             }
+        }
+        else if (!lensDescriptionTuto.Ended)
+        {
+            if (!lensDescriptionTuto.Started)
+                lensDescriptionTuto.StartToShow();
+            else
+                lensDescriptionTuto.CheckForInputDone();
         }
         else if (!lampTuto.Ended)
         {
@@ -139,12 +146,11 @@ public class InputTutorial
             else
             {
                 if (!checker.CheckIfKeyOK())
+                {
                     done = false;
+                }
             }
         }
-
-        if (done)
-            Debug.Log("Oui");
 
         if (done)
             StopToShow();
@@ -173,12 +179,17 @@ public class InputTutorial
 public class TutorialKeyChecker
 {
     [SerializeField] KeyCode keyToPress;
+    [SerializeField] int numberOfPress = 1;
     bool keyChecked;
 
     public bool CheckIfKeyOK()
     {
-        if (Input.GetKey(keyToPress) && !keyChecked)
-            keyChecked = true;
+        if (Input.GetKeyDown(keyToPress) && !keyChecked)
+        {
+            numberOfPress--;
+            if(numberOfPress <= 0)
+                keyChecked = true;
+        }
 
         return keyChecked;
     }
