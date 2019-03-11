@@ -6,6 +6,7 @@ public class RevealAfterLamp : MonoBehaviour {
 
     public static RevealAfterLamp staticReveal;
     public GameObject grandPont;
+    public GameObject petitPont;
     public GameObject salleTransfomée;
     public GameObject player;
 
@@ -21,6 +22,7 @@ public class RevealAfterLamp : MonoBehaviour {
         {
             Debug.Log("Choppe la lampe");
             grandPont.SetActive(false);
+                petitPont.SetActive(false);
             salleTransfomée.SetActive(true);
         }
     }
