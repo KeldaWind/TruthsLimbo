@@ -18,7 +18,7 @@ public class PlayerSoundsManager {
     {
         if (currentStepTimer > 0)
             currentStepTimer -= Time.deltaTime * (running ? 1.5f : 1);
-        else if(currentStepTimer < 0)
+        else if(currentStepTimer <= 0)
         {
             EmitStepSound();
             currentStepTimer = 1/numberOfStepsPerSeconds;
