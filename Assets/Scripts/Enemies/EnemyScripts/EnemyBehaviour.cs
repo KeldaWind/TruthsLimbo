@@ -40,11 +40,14 @@ public class EnemyBehaviour : MonoBehaviour {
     //Required refereence
     private LensManager lensManager;
 
+    public Vector3 iniPos;
+
     #endregion
 
     void Start ()
     {
         lensManager = GameManager.gameManager.lensManager; //get lesn manager
+        iniPos = transform.position;
     }
 
     void Update ()
@@ -218,5 +221,10 @@ public class EnemyBehaviour : MonoBehaviour {
             visibility.SetVisibleInNormalWorld();
             activeLamp = true;
         }
+    }
+
+    public void ResetPositon()
+    {
+        transform.position = iniPos;
     }
 }
