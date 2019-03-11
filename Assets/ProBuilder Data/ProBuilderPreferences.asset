@@ -14,17 +14,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Bool_keys:
   - pb_TorusUsesInnerOuterMethod
+  - pb_SmoothingGroupEditor::m_ShowPreview
+  - pb_SmoothingGroupEditor::m_PreviewDither
+  - pb_SmoothingGroupEditor::m_DrawNormals
+  - pbExtrudeAsGroup
+  - pbManifoldEdgeExtrusion
   m_Int_keys:
   - pbHandleAlignment
   - pbDefaultEditLevel
   - pbDefaultSelectionMode
   - pb_GIWorkflowMode
   - pbExtrudeMethod
+  - pbEdgeSubdivisions
   m_Float_keys:
   - pbEditorScroll.x
   - pbEditorScroll.y
   - pbExtrudeDistance
-  m_String_keys: []
+  - pb_SmoothingGroupEditor::m_PreviewOpacity
+  - pb_SmoothingGroupEditor::m_NormalsSize
+  - pbBevelAmount
+  m_String_keys:
+  - pbCurrentMaterialPalette
   m_Color_keys: []
   m_Material_keys: []
   m_Bool_values: 01
