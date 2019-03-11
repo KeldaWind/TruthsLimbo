@@ -1059,7 +1059,7 @@ MonoBehaviour:
         r\xE9v\xE9l\xE9s..."
       keysToCheck:
       - keyToPress: 102
-        numberOfPress: 1
+        numberOfPress: 3
       checkJustOne: 0
     lampTuto:
       text: {fileID: 114971028421325798}

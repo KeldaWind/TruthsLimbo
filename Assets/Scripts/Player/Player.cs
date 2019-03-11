@@ -38,6 +38,13 @@ public class Player : MonoBehaviour
             return lensManager.HasLens;
         }
     }
+    public bool IsUsingLens
+    {
+        get
+        {
+            return lensManager.Equiped;
+        }
+    }
     [SerializeField] LampManager lampManager;
     public bool HasLamp
     {
@@ -150,6 +157,8 @@ public class Player : MonoBehaviour
             currentTotalForce += playerMovements.GetCurrentPlayerMoveWithRightDirection(moveDir, inputManager.Running);
 
             soundsManager.UpdateStepSound(inputManager.Running);
+
+            documentReadability.CloseDocument();
         }
 
         currentTotalForce += playerMovements.GrvtManager.GetCurrentGravityForce();

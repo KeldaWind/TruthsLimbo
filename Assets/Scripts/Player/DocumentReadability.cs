@@ -10,13 +10,17 @@ public class DocumentReadability {
     [SerializeField] Image documentImage;
     ReadableDocument currentDocument;
 
-    public void OpenDocument(ReadableDocument document)
+    bool currentDocEvolved;
+
+    public void OpenDocument(ReadableDocument document, bool evolved)
     {
         documentImage.gameObject.SetActive(true);
         documentImage.sprite = GameManager.gameManager.LensActivated ? document.truthImage : document.normalImage;
         documentImage.SetNativeSize();
         currentDocument = document;
         opened = true;
+
+        currentDocEvolved = evolved;
     }
 
     public void CloseDocument()
@@ -27,7 +31,7 @@ public class DocumentReadability {
 
     public void SwitchDocumentImage()
     {
-        documentImage.sprite = GameManager.gameManager.LensActivated ? currentDocument.truthImage : currentDocument.normalImage;
+        documentImage.sprite = GameManager.gameManager.LensActivated ? (currentDocEvolved ? currentDocument.evolvedImage : currentDocument.truthImage) : currentDocument.normalImage;
     }
 }
 
@@ -36,4 +40,5 @@ public struct ReadableDocument
 {
     public Sprite normalImage;
     public Sprite truthImage;
+    public Sprite evolvedImage;
 }
