@@ -6,6 +6,7 @@ public class Player : MonoBehaviour
 {
     [SerializeField] Rigidbody playerBody;
     [SerializeField] InputManager inputManager;
+    [SerializeField] PlayerCursorManager playerCursorManager;
     [SerializeField] PlayerMovements playerMovements;
     [SerializeField] LensManager lensManager;
     [SerializeField] PlayerPullability playerPullability;
@@ -27,6 +28,7 @@ public class Player : MonoBehaviour
             return documentReadability;
         }
     }
+
 
 
     public bool HasLens
@@ -53,6 +55,10 @@ public class Player : MonoBehaviour
     }
 	
 	void Update () {
+        bool interactionPossible = false;
+        bool canLampOn = false;
+        bool canLampOff = false;
+
         if (lensManager.HasLens)
         {
             if (inputManager.GetLensEquip)
@@ -62,7 +68,7 @@ public class Player : MonoBehaviour
             }
         }
 
-        CheckInteraction();
+        interactionPossible = CheckInteraction();
         //playerPullability.CheckForTakeOrRelease(inputManager, this, GameManager.gameManager.NormalCamera.gameObject.activeInHierarchy ? GameManager.gameManager.NormalCamera : GameManager.gameManager.LensCamera);
         playerPullability.UpdatePull(transform.position);
 
@@ -71,6 +77,8 @@ public class Player : MonoBehaviour
         if (lampManager.HasLamp)
         {
             EnigmaObject lampEnigmaObject = lampManager.CheckForLookedObject(GameManager.gameManager.NormalCamera.gameObject.activeInHierarchy ? GameManager.gameManager.NormalCamera : GameManager.gameManager.LensCamera);
+            canLampOn = lampEnigmaObject != null;
+
             if (lampEnigmaObject != null && Input.GetMouseButtonDown(0))
             {
                 lampManager.ActiveLamp(lampEnigmaObject);
@@ -90,6 +98,11 @@ public class Player : MonoBehaviour
             playerMovements.Jump();
 
         playerTutorial.Update();
+
+        canLampOff = lampManager.LampIsOn;
+
+
+        playerCursorManager.UpdateCursorSprite(interactionPossible, canLampOn, canLampOff);
     }
 
     private void FixedUpdate()
@@ -146,24 +159,25 @@ public class Player : MonoBehaviour
     #endregion
 
     #region Interactions
-    public void CheckInteraction()
+    public bool CheckInteraction()
     {
-        Camera mainCamera = GameManager.gameManager.NormalCamera.gameObject.activeInHierarchy? GameManager.gameManager.NormalCamera : GameManager.gameManager.LensCamera;
+        bool interactiveObjectExists = false;
 
-        if (inputManager.GetInteractDown)
+        Camera mainCamera = GameManager.gameManager.NormalCamera.gameObject.activeInHierarchy ? GameManager.gameManager.NormalCamera : GameManager.gameManager.LensCamera;
+
+        if (documentReadability.opened && inputManager.GetInteractDown)
+            documentReadability.CloseDocument();
+
+        Ray ray = mainCamera.ScreenPointToRay(new Vector3(mainCamera.pixelWidth / 2, mainCamera.pixelHeight / 2, 0));
+        RaycastHit hit = new RaycastHit();
+
+        if (Physics.Raycast(ray, out hit, 3))
         {
-            if (documentReadability.opened)
+            IInteracible interactibleObject = hit.collider.GetComponent<IInteracible>();
+            if (interactibleObject != null)
             {
-                documentReadability.CloseDocument();
-            }
-
-            Ray ray = mainCamera.ScreenPointToRay(new Vector3(mainCamera.pixelWidth / 2, mainCamera.pixelHeight / 2, 0));
-            RaycastHit hit = new RaycastHit();
-
-            if (Physics.Raycast(ray, out hit, 3))
-            {
-                IInteracible interactibleObject = hit.collider.GetComponent<IInteracible>();
-                if (interactibleObject != null)
+                interactiveObjectExists = true;
+                if (inputManager.GetInteractDown)
                 {
                     playerTutorial.ValidateInteraction();
                     interactibleObject.Interact(this);
@@ -175,6 +189,8 @@ public class Player : MonoBehaviour
         {
             playerPullability.ReleaseObject(this);
         }
+
+        return interactiveObjectExists;
     }
     #endregion
 }

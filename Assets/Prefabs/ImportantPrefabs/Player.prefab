@@ -972,6 +972,14 @@ MonoBehaviour:
     interactKey: 101
     lensKey: 102
     laserKey: 114
+  playerCursorManager:
+    cursorImage: {fileID: 114089364664014356}
+    normalSprite: {fileID: 21300000, guid: b6ad3db0a755b3e4eafe238ca488d1b6, type: 3}
+    interactibleSprite: {fileID: 21300000, guid: b23d145c98456b64c98132de37679ae2,
+      type: 3}
+    canUseLampSprite: {fileID: 21300000, guid: d7db98183a220664f8e65c637e1bb068, type: 3}
+    canRemoveLampSprite: {fileID: 21300000, guid: 3d82fd9780911d0419daac4299655071,
+      type: 3}
   playerMovements:
     walkSpeed: 2.5
     runSpeed: 4
@@ -1007,35 +1015,52 @@ MonoBehaviour:
       line: "Appuyez sur ZQSD pour vous d\xE9placer"
       keysToCheck:
       - keyToPress: 122
+        numberOfPress: 1
       - keyToPress: 113
+        numberOfPress: 1
       - keyToPress: 115
+        numberOfPress: 1
       - keyToPress: 100
+        numberOfPress: 1
       checkJustOne: 0
     jumpTuto:
       text: {fileID: 114971028421325798}
       line: Appuyez sur Espace pour sauter
       keysToCheck:
       - keyToPress: 32
+        numberOfPress: 1
       checkJustOne: 0
     crouchTuto:
       text: {fileID: 114971028421325798}
       line: Maintenez C ou Ctrl Gauche pour vous accroupir
       keysToCheck:
       - keyToPress: 99
+        numberOfPress: 1
       - keyToPress: 306
+        numberOfPress: 1
       checkJustOne: 1
     interactTuto:
       text: {fileID: 114971028421325798}
       line: "Appuyez ou maintenez E pour int\xE9ragir avec certains objets"
       keysToCheck:
       - keyToPress: 101
+        numberOfPress: 1
       checkJustOne: 0
     lensTuto:
       text: {fileID: 114971028421325798}
       line: Appuyez sur F pour mettre ou enlever la lentille
       keysToCheck:
       - keyToPress: 102
+        numberOfPress: 1
       checkJustOne: 1
+    lensDescriptionTuto:
+      text: {fileID: 114971028421325798}
+      line: "Gr\xE2ce \xE0 cet objet, les Illusions disparaissent et les Secrets sont
+        r\xE9v\xE9l\xE9s..."
+      keysToCheck:
+      - keyToPress: 102
+        numberOfPress: 1
+      checkJustOne: 0
     lampTuto:
       text: {fileID: 114971028421325798}
       line: Appuyez sur clic gauche en pointant sur un Illusion pour en faire un Secret
@@ -1063,13 +1088,6 @@ MonoBehaviour:
     documentImage: {fileID: 114685341520345370}
   lampManager:
     ownsLamp: 0
-    gameCursor: {fileID: 114089364664014356}
-    normalGameCursorImage: {fileID: 21300000, guid: b6ad3db0a755b3e4eafe238ca488d1b6,
-      type: 3}
-    lampActiveGameCursorImage: {fileID: 21300000, guid: d80fc19da3c7f034aaa221d2b4ba96cf,
-      type: 3}
-    interactibleGameCursorImage: {fileID: 21300000, guid: ea1e473e71d7de94eb1ff95c58042525,
-      type: 3}
 --- !u!54 &54982370807204666
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1324,7 +1342,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1800, y: 640}
+  m_SizeDelta: {x: 1280, y: 640}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &222816598189406020
 CanvasRenderer:
