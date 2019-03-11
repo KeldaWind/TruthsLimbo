@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LampObject : MonoBehaviour
+public class LampObject : MonoBehaviour, IInteracible
 {
     private void OnTriggerEnter(Collider other)
     {
@@ -12,5 +12,11 @@ public class LampObject : MonoBehaviour
             player.relatedPlayer.GainLamp();
             Destroy(gameObject);
         }
+    }
+
+    public void Interact(Player player)
+    {
+        player.GainLamp();
+        Destroy(gameObject);
     }
 }
