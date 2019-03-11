@@ -45,6 +45,8 @@ public class PlayerMovements {
 
         player.localRotation = Quaternion.Euler(new Vector3(0, currentCameraDirection.y, 0));
         cameras.localRotation = Quaternion.Euler(new Vector3(currentCameraDirection.x, 0, 0));
+
+
     }
     #endregion
 
