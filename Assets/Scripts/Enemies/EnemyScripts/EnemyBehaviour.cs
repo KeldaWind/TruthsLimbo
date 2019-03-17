@@ -23,6 +23,7 @@ public class EnemyBehaviour : MonoBehaviour {
     public EnemyMovement movement;
     public EnemyAttack attack;
     public EnemyVisibility visibility;
+    public EnemyAudio enemyAudio;
 
     [Header("Detection values")]
     public LayerMask playerLayer;
@@ -41,6 +42,9 @@ public class EnemyBehaviour : MonoBehaviour {
     private LensManager lensManager;
 
     public Vector3 iniPos;
+    EnemyState iniState;
+
+    PlayerHitbox playerHitbox;
 
     #endregion
 
@@ -48,6 +52,9 @@ public class EnemyBehaviour : MonoBehaviour {
     {
         lensManager = GameManager.gameManager.lensManager; //get lesn manager
         iniPos = transform.position;
+        iniState = enemyState;
+        playerHitbox = PlayerHitbox.instance;
+        playerHitbox.OnDeath += ResetPositon;
     }
 
     void Update ()
@@ -162,6 +169,7 @@ public class EnemyBehaviour : MonoBehaviour {
             case EnemyState.ChasePlayer:
                 //visibility.SetVisibleInNormalWorld();
                 movement.canMoveToPlayer = true;
+                enemyAudio.PlayEnemySound(enemyAudio.playerSpotedSounds);
 
                 foreach (Collider bodyCollider in bodyColliders)
                     bodyCollider.enabled = true;
@@ -169,7 +177,7 @@ public class EnemyBehaviour : MonoBehaviour {
                 break;
             case EnemyState.Attack:
                 //visibility.SetVisibleInNormalWorld();
-
+                enemyAudio.PlayEnemySound(enemyAudio.attackSounds);
                 //stop movement
                 movement.canMoveToPlayer = false; 
                 movement.StopMovement();
@@ -226,5 +234,6 @@ public class EnemyBehaviour : MonoBehaviour {
     public void ResetPositon()
     {
         transform.position = iniPos;
+        enemyState = iniState;
     }
 }

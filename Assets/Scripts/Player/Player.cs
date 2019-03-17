@@ -29,7 +29,7 @@ public class Player : MonoBehaviour
         }
     }
 
-
+    public static Player instance;
 
     public bool HasLens
     {
@@ -52,6 +52,11 @@ public class Player : MonoBehaviour
         {
             return lampManager.HasLamp;
         }
+    }
+
+    private void Awake()
+    {
+        instance = this;
     }
 
     void Start () {

@@ -8,6 +8,7 @@ public class Door : MonoBehaviour, IInteracible
     [SerializeField] HingeJoint doorHingeJoint;
     [SerializeField] bool openable;
     [SerializeField] bool opened;
+    [SerializeField] AudioSource openingSound;
     bool firstOpening = true;
     bool wideOpen;
     bool wideClosed;
@@ -55,6 +56,11 @@ public class Door : MonoBehaviour, IInteracible
             opened = !opened;
             if (opened)
                 firstOpening = false;
+
+            if(openingSound != null)
+            {
+                openingSound.Play();
+            }
         }
     }
 
