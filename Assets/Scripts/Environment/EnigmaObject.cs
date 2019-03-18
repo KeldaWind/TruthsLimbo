@@ -20,6 +20,7 @@ public class EnigmaObject : MonoBehaviour {
     [SerializeField] Renderer objectRenderer;
     [SerializeField] Rigidbody objectBody;
     [SerializeField] NavMeshObstacle objectNavMeshObstacle;
+    [SerializeField] bool inverter;
     
 
     private void Start()
@@ -58,8 +59,11 @@ public class EnigmaObject : MonoBehaviour {
         if (objectNavMeshObstacle == null)
             objectNavMeshObstacle = GetComponent<NavMeshObstacle>();
 
-        if (objectNavMeshObstacle != null)
+        if (objectNavMeshObstacle != null && !inverter)
             objectNavMeshObstacle.enabled = isReal;
+
+        if (objectNavMeshObstacle != null && inverter)
+            objectNavMeshObstacle.enabled = !isReal;
 
         gameObject.layer = isReal ? 9 : 10;
     }
