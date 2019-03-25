@@ -8,18 +8,43 @@ public class LightTrigger : MonoBehaviour
 
     private void Start()
     {
-        anim = GetComponent<Animator>();
+        if (GetComponent<Animator>() != null)
+            anim = GetComponent<Animator>();
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        anim.SetTrigger("LightOn");
-        Debug.Log("Entered Light Trigger " + gameObject.name);
+
+        if (other.tag == "Player")
+        {
+            if (anim != null)
+            {
+                anim.SetTrigger("LightOn");
+
+            }
+            for (int i = 0; i < transform.childCount; i++)
+            {
+                transform.GetChild(i).gameObject.SetActive(true);
+            }
+
+            Debug.Log(other.gameObject.name + " Entered Light Trigger " + gameObject.name);
+        }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        anim.SetTrigger("LightOff");
-        Debug.Log("Exited Light Trigger " + gameObject.name);
+        if (other.tag == "Player")
+        {
+            if (anim != null)
+            {
+                anim.SetTrigger("LightOff");
+            }
+            for (int i = 0; i < transform.childCount; i++)
+            {
+                transform.GetChild(i).gameObject.SetActive(false);
+            }
+
+            Debug.Log(other.gameObject.name + " Exited Light Trigger " + gameObject.name);
+        }
     }
 }
